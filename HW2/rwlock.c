@@ -78,22 +78,28 @@ void *reader(void *arg) {
     thread_arg_t *targ = (thread_arg_t *)arg;
     int id = targ->id;
     int duration = targ->duration;
+    double cur_time;
 
     rwlock_acquire_timelock(&rw);
-    printf("[%.4f] Reader#%d: Created!\n", get_time(), id);  // Print the thread creation status
+    cur_time = get_time();
     rwlock_release_timelock(&rw);
+    printf("[%.4f] Reader#%d: Created!\n", cur_time, id);  // Print the thread creation status
 
     rwlock_acquire_waitwriter(&rw);
     rwlock_release_waitwriter(&rw);
     rwlock_acquire_readlock(&rw);  // rw is a structure for reader-writer Lock
     rwlock_acquire_timelock(&rw);
-    printf("[%.4f] Reader#%d: Read started! (reading %d ms)\n", get_time(), id, duration);  // Print status indicating the start of reading
+    cur_time = get_time();
     rwlock_release_timelock(&rw);
+    printf("[%.4f] Reader#%d: Read started! (reading %d ms)\n", cur_time, id, duration);  // Print status indicating the start of reading
+
     usleep(duration * 1000);  // Sleep for the specified processing time
 
     rwlock_acquire_timelock(&rw);
-    printf("[%.4f] Reader#%d: Terminated!\n", get_time(), id);  // Print the thread termination status
+    cur_time = get_time();
     rwlock_release_timelock(&rw);
+    printf("[%.4f] Reader#%d: Terminated!\n", cur_time, id);  // Print the thread termination status
+
     rwlock_release_readlock(&rw);
     free(arg);
 }
@@ -104,19 +110,25 @@ void *writer(void *arg) {
     thread_arg_t *targ = (thread_arg_t *)arg;
     int id = targ->id;
     int duration = targ->duration;
+    double cur_time;
+
     rwlock_acquire_timelock(&rw);
-    printf("[%.4f] Writer#%d: Created!\n", get_time(), id);  // Print the thread creation status
+    cur_time = get_time();
     rwlock_release_timelock(&rw);
+    printf("[%.4f] Writer#%d: Created!\n", cur_time, id);  // Print the thread creation status
 
     rwlock_acquire_waitwriter(&rw);  // rw is a structure for reader-writer Lock
     rwlock_acquire_writelock(&rw);
     rwlock_acquire_timelock(&rw);
-    printf("[%.4f] Writer#%d: Write started! (writing %d ms)\n", get_time(), id, duration);  // Print status indicating the start of writing
+    cur_time = get_time();
     rwlock_release_timelock(&rw);
+    printf("[%.4f] Writer#%d: Write started! (writing %d ms)\n", cur_time, id, duration);  // Print status indicating the start of writing
+
     usleep(duration * 1000);  // Sleep for the specified processing time
     rwlock_acquire_timelock(&rw);
-    printf("[%.4f] Writer#%d: Terminated!\n", get_time(), id);  // Print the thread termination status
+    cur_time = get_time();
     rwlock_release_timelock(&rw);
+    printf("[%.4f] Writer#%d: Terminated!\n", cur_time, id);  // Print the thread termination status
     rwlock_release_writelock(&rw);
     rwlock_release_waitwriter(&rw);
     free(arg);
