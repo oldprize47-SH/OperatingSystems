@@ -1,58 +1,22 @@
 # Operating Systems Labs
 
-**Two systems-programming exercises: searching command output through process/pipe communication, and coordinating readers and writers.**
+This repository contains my operating-systems coursework in C, along with examples supplied for the course.
 
-![Processes. Pipes. Shared access.](assets/readme-overview.png)
+In [HW1](HW1/hw1_21800275.c), a program starts another command, receives its output through a pipe and searches that output. The [assignment README](HW1/README.txt) describes the command arguments and the exact and flexible search modes.
 
-[What I built](#what-i-built) · [My role](#my-role) · [Code and reproduction](#code-and-reproduction) · [Portfolio](https://github.com/oldprize47-SH)
+[HW2](HW2/rwlock.c) is a reader/writer synchronisation exercise. Its input sequence is stored in [sequence.txt](HW2/sequence.txt).
 
-## What I built
+## Building
 
-| Deliverable | What it does | Explore |
-|---|---|---|
-| **Process and pipe exercise** | Command-output search implementation | [Source / result](HW1/hw1_21800275.c) |
-| **Usage contract** | Exact and flexible search arguments | [Source / result](HW1/README.txt) |
-| **Reader/writer exercise** | Shared-access synchronisation | [Source / result](HW2/rwlock.c) |
-
-### Result at a glance
-
-Source archive inspected. Linux/POSIX build and concurrency behaviour have not been revalidated.
-
-## My role
-
-HW1 and HW2 are the coursework entry points. The Source_Codes_for_Ch* directories are course examples and are not presented as original project implementations.
-
-## How it works
-
-```mermaid
-flowchart LR
-    N0["Launch a process"] --> N1
-    N1["Search its output"] --> N2
-    N2["Coordinate threads"]
-```
-
-The diagram is a reading route through separate exercises, not one integrated runtime.
-
-## Code and reproduction
-
-## Intended environment
-
-Use Linux or a suitable POSIX environment with GCC, pthreads and semaphores.
-Suggested compile commands, **not executed in this Windows portfolio pass**:
+The code expects a Linux/POSIX environment with GCC, pthreads and semaphores. The following are suggested build commands; they have not been run in the Windows portfolio environment:
 
 ```sh
 gcc -Wall -Wextra HW1/hw1_21800275.c -o wspipe
 gcc -Wall -Wextra -pthread HW2/rwlock.c -o rwlock
 ```
 
-The original HW1 README explains the command/search arguments. Inspect a command
-before passing it to the process exercise. The archive's generated binaries are
-historical artefacts, not portable executables or current test evidence.
+Read the command passed to HW1 before executing it. The generated binaries in the archive are historical files, not portable builds. No new concurrency stress test or fairness measurement has been performed.
 
-No fresh POSIX build, concurrency stress test or fairness claim is made here.
+The `Source_Codes_for_Ch*` directories contain teaching examples rather than my original implementations.
 
-## Source and credits
-
-[Original repository](https://github.com/oldprize47/2025_OS) · [Portfolio home](https://github.com/oldprize47-SH)
-
-Course scaffolding, team contributions and third-party assets retain their original attribution. This documentation does not grant a new licence.
+[Original repository](https://github.com/oldprize47/2025_OS). Original history and attribution are retained.
