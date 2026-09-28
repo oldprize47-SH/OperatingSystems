@@ -1,24 +1,39 @@
 # Operating Systems Labs
 
-![Operating Systems Labs overview](assets/portfolio-cover.png)
+**Two systems-programming exercises: searching command output through process/pipe communication, and coordinating readers and writers.**
 
-POSIX-oriented coursework on processes, pipes and thread synchronisation, with a command-output search program and a reader/writer-lock exercise.
+![Processes. Pipes. Shared access.](assets/readme-overview.png)
 
-[Portfolio home](https://github.com/oldprize47-SH) · [Original repository](https://github.com/oldprize47/2025_OS)
+[What I built](#what-i-built) · [My role](#my-role) · [Code and reproduction](#code-and-reproduction) · [Portfolio](https://github.com/oldprize47-SH)
 
-## Contribution and context
+## What I built
+
+| Deliverable | What it does | Explore |
+|---|---|---|
+| **Process and pipe exercise** | Command-output search implementation | [Source / result](HW1/hw1_21800275.c) |
+| **Usage contract** | Exact and flexible search arguments | [Source / result](HW1/README.txt) |
+| **Reader/writer exercise** | Shared-access synchronisation | [Source / result](HW2/rwlock.c) |
+
+### Result at a glance
+
+Source archive inspected. Linux/POSIX build and concurrency behaviour have not been revalidated.
+
+## My role
 
 HW1 and HW2 are the coursework entry points. The Source_Codes_for_Ch* directories are course examples and are not presented as original project implementations.
 
-## Code map
+## How it works
 
-| Entry | Purpose |
-|---|---|
-| [HW1/hw1_21800275.c](HW1/hw1_21800275.c) | Process/pipe command-output search |
-| [HW1/README.txt](HW1/README.txt) | Exact and flexible search behaviour |
-| [HW2/rwlock.c](HW2/rwlock.c) | Reader/writer synchronisation exercise |
-| [HW2/sequence.txt](HW2/sequence.txt) | Recorded exercise input |
-| [Source_Codes_for_Ch4](Source_Codes_for_Ch4) | Thread examples supplied for study |
+```mermaid
+flowchart LR
+    N0["Launch a process"] --> N1
+    N1["Search its output"] --> N2
+    N2["Coordinate threads"]
+```
+
+The diagram is a reading route through separate exercises, not one integrated runtime.
+
+## Code and reproduction
 
 ## Intended environment
 
@@ -36,9 +51,8 @@ historical artefacts, not portable executables or current test evidence.
 
 No fresh POSIX build, concurrency stress test or fairness claim is made here.
 
-## Archive policy
+## Source and credits
 
-The fork retains upstream history, source attributions and course material. The
-portfolio documentation does not assign a new licence or claim sole authorship
-of inherited code. Current checks are stated above; an untested component is not
-presented as verified.
+[Original repository](https://github.com/oldprize47/2025_OS) · [Portfolio home](https://github.com/oldprize47-SH)
+
+Course scaffolding, team contributions and third-party assets retain their original attribution. This documentation does not grant a new licence.
