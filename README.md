@@ -10,6 +10,8 @@
 
 ## 한국어
 
+[코드 읽는 순서](#코드-따라-읽기)
+
 
 
 이 저장소에는 Sangheon Park가 C로 작성한 운영체제 수업 과제와 수업에서 제공한 예제가 담겨 있습니다.
@@ -36,11 +38,11 @@
 
 
 
-![프로젝트 목표: operating-systems-labs](docs/goals/project-focus-v1.png)
+![프로젝트 목표: operating-systems-labs](docs/goals/goal.png)
 
 
 
-AI로 생성한 콘셉트 일러스트입니다. 기기의 외형, 인터페이스 배치, 예시 그래픽은 설명을 위한 표현이며, 실제 프로젝트 사진이나 측정 결과가 아닙니다.
+<sub>AI 생성 개념도</sub>
 
 
 
@@ -60,7 +62,7 @@ AI로 생성한 콘셉트 일러스트입니다. 기기의 외형, 인터페이�
 
 
 
-각 행을 따라가며 독립적인 실습이나 작업 흐름을 살펴볼 수 있습니다. 저장소 전체가 하나로 연결된 애플리케이션은 아니라는 점을 참고하면 구성을 이해하기 쉽습니다. [SVG](docs/flowcharts/os.svg)
+<sub>[SVG](docs/flowcharts/os.svg)</sub>
 
 
 
@@ -132,6 +134,18 @@ gcc -Wall -Wextra -pthread HW3/mtws.c -o mtws
 
 
 
+### 코드 따라 읽기
+
+아래 순서는 파일의 역할과 연결을 이해하기 위한 안내입니다. 독립 과제나 보드별 프로그램은 한꺼번에 실행하지 않고 해당 항목의 실행 안내를 따릅니다.
+
+| 순서 | 파일 | 역할과 다음 단계 |
+|---|---|---|
+| 1 | [Source_Codes_for_Ch3_1](Source_Codes_for_Ch3_1) | fork·exec·wait 예제로 프로세스 생성과 종료 대기를 먼저 읽습니다. |
+| 2 | [HW1/hw1_21800275.c](HW1/hw1_21800275.c) | 명령 출력과 검색어를 연결하는 파이프 과제입니다. README.txt의 실행 예와 함께 읽습니다. |
+| 3 | [HW2/rwlock.c](HW2/rwlock.c) | 읽기·쓰기 작업의 동기화 순서를 읽고 sequence.txt 입력을 함께 확인합니다. |
+| 4 | [HW3/mtws.c](HW3/mtws.c) | 명령행 옵션에서 생산자·소비자 스레드 생성, 파일 읽기, 종료 대기로 이어집니다. |
+| 5 | [HW1/README.txt](HW1/README.txt) | Linux 또는 WSL에서 과제별 Makefile을 사용합니다. 원래의 명령 입력 예는 이 안내에 보존했습니다. |
+
 ---
 
 
@@ -139,6 +153,8 @@ gcc -Wall -Wextra -pthread HW3/mtws.c -o mtws
 <a id="english"></a>
 
 ## English
+
+[Code walkthrough](#code-walkthrough)
 
 
 
@@ -170,11 +186,11 @@ Learn how processes communicate and how threads coordinate shared data and file-
 
 
 
-![Project goal: operating-systems-labs](docs/goals/project-focus-v1.png)
+![Project goal: operating-systems-labs](docs/goals/goal.png)
 
 
 
-AI-generated concept illustration. Device appearance, interface layout and example graphics are illustrative, not project photographs or measured results.
+<sub>AI-generated concept illustration</sub>
 
 
 
@@ -194,7 +210,7 @@ The producer-consumer and worker patterns are useful starting points for paralle
 
 
 
-You can read each row as an independent exercise or workflow. The repository brings these exercises together, but they do not form one connected application. [SVG](docs/flowcharts/os.svg)
+<sub>[SVG](docs/flowcharts/os.svg)</sub>
 
 
 
@@ -264,3 +280,14 @@ The teaching examples in the `Source_Codes_for_Ch*` directories provide context 
 
 [Original repository](https://github.com/oldprize47/2025_OS). Original history and attribution are retained.
 
+### Code walkthrough
+
+Use this order to understand each file and its connections. Independent exercises and board targets are not one executable; follow the relevant run instructions below.
+
+| Step | File | Role and next step |
+|---|---|---|
+| 1 | [Source_Codes_for_Ch3_1](Source_Codes_for_Ch3_1) | Start with fork, exec and wait examples for process creation and completion. |
+| 2 | [HW1/hw1_21800275.c](HW1/hw1_21800275.c) | Read the command-output search pipeline alongside the examples in README.txt. |
+| 3 | [HW2/rwlock.c](HW2/rwlock.c) | Trace reader/writer synchronisation and inspect the sequence.txt input. |
+| 4 | [HW3/mtws.c](HW3/mtws.c) | Follow argument parsing into producer/consumer threads, file reading and joins. |
+| 5 | [HW1/README.txt](HW1/README.txt) | Use each assignment Makefile on Linux or WSL; the original command examples remain here. |
