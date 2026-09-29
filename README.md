@@ -29,17 +29,17 @@ AI로 생성한 콘셉트 일러스트입니다. 기기의 외형, 인터페이�
 
 ![운영체제 수업 과제](docs/flowcharts/os.png)
 
-각 행은 서로 독립적인 실습이나 작업 흐름을 설명합니다. 이 저장소 전체가 하나로 연결된 애플리케이션은 아닙니다. [SVG](docs/flowcharts/os.svg)
+각 행을 따라가며 독립적인 실습이나 작업 흐름을 살펴볼 수 있습니다. 저장소 전체가 하나로 연결된 애플리케이션은 아니라는 점을 참고하면 구성을 이해하기 쉽습니다. [SVG](docs/flowcharts/os.svg)
 
 ### 세 실습의 관계
 
 HW1은 프로세스 간 통신을 다룹니다. 자식 프로세스는 요청된 명령을 실행하고 표준 출력을 파이프로 보냅니다. 부모 프로세스는 이 스트림을 읽어 요청된 텍스트를 찾습니다. 정확 일치 검색과 선택적으로 사용하는 문자 기반 모드는 다릅니다. 후자는 비슷한 단어를 찾는 근사 검색이 아니라, 주어진 검색어에 포함된 문자 중 하나라도 있는지 찾습니다.
 
-HW2는 공유 상태에 대한 접근을 다룹니다. 읽기 작업과 쓰기 작업의 순서를 읽어 스레드를 만들고, 세마포어와 읽기 작업자 수를 사용해 이들을 조율합니다. 여러 읽기 작업자는 동시에 접근할 수 있지만, 쓰기 작업자는 배타적 접근이 필요합니다. 출력되는 생성·시작·종료 시각은 실행을 살펴보는 데 도움이 되지만, 그 자체만으로 공정성이나 기아 상태가 없음을 증명하지는 않습니다.
+HW2는 공유 상태에 대한 접근을 다룹니다. 읽기 작업과 쓰기 작업의 순서를 읽어 스레드를 만들고, 세마포어와 읽기 작업자 수를 사용해 이들을 조율합니다. 여러 읽기 작업자는 동시에 접근할 수 있지만, 쓰기 작업자는 배타적 접근이 필요합니다. 출력되는 생성·시작·종료 시각을 따라가면 실행 과정을 살펴볼 수 있습니다. 다만 공정성이나 기아 상태가 없음을 판단하려면 이 시각 정보만으로는 충분하지 않습니다.
 
 HW3는 파일 검색 작업을 분배합니다. 하나의 생산자가 재귀적으로 파일을 찾아 크기가 제한된 원형 버퍼에 경로를 넣습니다. 소비자 스레드는 경로를 꺼내 각 파일에서 검색어의 출현 횟수를 셉니다. 세마포어는 빈 공간, 큐에 들어간 항목, 버퍼 접근, 공유 합계를 조율합니다. 생산자는 종료 표식을 제공하고, 메인 스레드는 작업자 스레드의 종료를 기다린 뒤 마칩니다.
 
-원래의 학습 맥락을 보존하기 위해 수업 예제도 과제와 함께 남겨 두었습니다. 이 예제들은 제공받은 참고자료이며, 학생이 추가로 작성한 애플리케이션이 아닙니다.
+원래의 학습 맥락을 보존하기 위해 수업 예제도 과제와 함께 남겨 두었습니다. 이 예제들은 수업에서 제공받은 참고자료로 읽으면 됩니다. 학생이 추가로 작성한 애플리케이션에 해당하지는 않습니다.
 
 ### 빌드
 
@@ -59,9 +59,9 @@ gcc -Wall -Wextra -pthread HW3/mtws.c -o mtws
 ./mtws -b 8 -t 2 -d HW1 -w main
 ```
 
-첫 번째 프로그램은 전달받은 명령을 실행합니다. 세 번째 프로그램은 지정된 디렉터리를 검색하므로, 출력을 처음 살펴볼 때는 작은 테스트 폴더를 선택하세요. 이 명령들은 소스에서 도출한 사용 예시이며, Linux에서 새로 실행해 검증한 결과가 아닙니다. HW2는 Windows에서 MinGW GCC 14.2로 컴파일했습니다. Linux 환경을 사용할 수 없었으므로, 전체 POSIX 프로그램과 동시성 동작은 검증하지 못했습니다. 아카이브에 있는 생성된 바이너리는 과거 파일이며, 여러 환경에서 사용할 수 있는 이식 가능한 빌드가 아닙니다. 새로운 동시성 스트레스 테스트나 공정성 측정은 수행하지 않았습니다.
+첫 번째 프로그램은 전달받은 명령을 실행합니다. 세 번째 프로그램은 지정된 디렉터리를 검색하므로, 작은 테스트 폴더로 시작하면 출력을 살펴보기 쉽습니다. 이 명령들은 소스에서 도출한 사용 예시이며, Linux에서 새로 실행해 검증한 결과가 아닙니다. HW2는 Windows에서 MinGW GCC 14.2로 컴파일했습니다. Linux 환경을 사용할 수 없었으므로, 전체 POSIX 프로그램과 동시성 동작은 검증하지 못했습니다. 아카이브에 있는 생성된 바이너리는 과거 파일이며, 여러 환경에서 사용할 수 있는 이식 가능한 빌드가 아닙니다. 새로운 동시성 스트레스 테스트나 공정성 측정은 수행하지 않았습니다.
 
-`Source_Codes_for_Ch*` 디렉터리에는 제가 직접 구현한 코드가 아니라 수업용 예제가 들어 있습니다.
+`Source_Codes_for_Ch*` 디렉터리의 수업용 예제는 과제의 배경을 살펴볼 때 참고할 수 있습니다. 제가 직접 구현한 코드와는 구분됩니다.
 
 [원본 저장소](https://github.com/oldprize47/2025_OS). 원래 이력과 저작자 표기를 유지합니다.
 
@@ -96,13 +96,13 @@ The producer-consumer and worker patterns are useful starting points for paralle
 
 ![Operating-systems coursework](docs/flowcharts/os.png)
 
-Each row describes an independent exercise or workflow; the repository is not one connected application. [SVG](docs/flowcharts/os.svg)
+You can read each row as an independent exercise or workflow. The repository brings these exercises together, but they do not form one connected application. [SVG](docs/flowcharts/os.svg)
 
 ### How the three exercises fit together
 
 HW1 is about communication between processes. The child runs the requested command and redirects its standard output into a pipe. The parent reads that stream and finds the requested text. Exact matching and the optional character-based mode are different: the latter looks for any character from the supplied search word, rather than doing approximate word matching.
 
-HW2 is about access to shared state. It reads a sequence of reader and writer jobs, creates threads and coordinates them with semaphores and a reader count. Multiple readers can share access, while a writer needs exclusive access. The printed creation, start and end times help inspect an execution; they do not by themselves prove fairness or freedom from starvation.
+HW2 is about access to shared state. It reads a sequence of reader and writer jobs, creates threads and coordinates them with semaphores and a reader count. Multiple readers can share access, while a writer needs exclusive access. You can follow the printed creation, start and end times to inspect an execution. Those times alone are not enough to establish fairness or freedom from starvation.
 
 HW3 distributes file-search work. One producer recursively discovers files and puts paths into a bounded circular buffer. Consumer threads remove paths and count the search word in each file. Semaphores coordinate empty spaces, queued items, buffer access and shared totals. The producer supplies termination markers and the main thread joins the workers before finishing.
 
@@ -126,8 +126,8 @@ From the repository root in the intended Linux environment, these are small exam
 ./mtws -b 8 -t 2 -d HW1 -w main
 ```
 
-The first program executes the command passed to it. The third searches the specified directory, so select a small test folder when first examining its output. These are usage examples derived from the source, not freshly verified Linux runs. HW2 compiled with MinGW GCC 14.2 on Windows. A Linux environment was not available, so the full POSIX programs and concurrency behavior remain unverified. The generated binaries in the archive are historical files, not portable builds. No new concurrency stress test or fairness measurement has been performed.
+The first program executes the command passed to it. The third searches the specified directory; starting with a small test folder makes its output easier to follow. These are usage examples derived from the source, not freshly verified Linux runs. HW2 compiled with MinGW GCC 14.2 on Windows. A Linux environment was not available, so the full POSIX programs and concurrency behavior remain unverified. The generated binaries in the archive are historical files, not portable builds. No new concurrency stress test or fairness measurement has been performed.
 
-The `Source_Codes_for_Ch*` directories contain teaching examples rather than my original implementations.
+The teaching examples in the `Source_Codes_for_Ch*` directories provide context for the assignments. They are supplied course material, not my original implementations.
 
 [Original repository](https://github.com/oldprize47/2025_OS). Original history and attribution are retained.
