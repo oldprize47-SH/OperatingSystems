@@ -1,12 +1,30 @@
 # Operating Systems Labs
 
-This repository contains my operating-systems coursework in C, along with examples supplied for the course.
+This repository contains operating-systems coursework by Sangheon Park in C, along with examples supplied for the course.
 
 In [HW1](HW1/hw1_21800275.c), a program starts another command, receives its output through a pipe and searches that output. The [assignment README](HW1/README.txt) describes the command arguments and the exact and flexible search modes.
 
 [HW2](HW2/rwlock.c) is a reader/writer synchronisation exercise. Its input sequence is stored in [sequence.txt](HW2/sequence.txt).
 
-[HW3](HW3/mtws.c) searches files in a directory with a bounded producer/consumer queue and worker threads. It accepts `-b` for buffer size, `-t` for thread count, `-d` for directory and `-w` for the search word. HW2 and HW3 were updated from my local coursework on 28 September 2026.
+[HW3](HW3/mtws.c) searches files in a directory with a bounded producer/consumer queue and worker threads. It accepts `-b` for buffer size, `-t` for thread count, `-d` for directory and `-w` for the search word. HW2 and HW3 were updated from the local coursework copy on 28 September 2026.
+
+## Project goal
+
+Learn how processes communicate and how threads coordinate shared data and file-search work.
+
+![Project goal: operating-systems-labs](docs/goals/project-focus-v1.png)
+
+AI-generated concept illustration. Device appearance, interface layout and example graphics are illustrative, not project photographs or measured results.
+
+## Where it could be used
+
+The producer-consumer and worker patterns are useful starting points for parallel file-search tools and other programs that divide independent jobs among threads. The pipe exercises illustrate how separate processes can pass data to one another. Applying these patterns to a longer-running tool would require checking error handling, cancellation and resource cleanup beyond the individual lab cases.
+
+## At a glance
+
+![Operating-systems coursework](docs/flowcharts/os.png)
+
+Each row describes an independent exercise or workflow; the repository is not one connected application. [SVG](docs/flowcharts/os.svg)
 
 ## How the three exercises fit together
 
@@ -16,7 +34,7 @@ HW2 is about access to shared state. It reads a sequence of reader and writer jo
 
 HW3 distributes file-search work. One producer recursively discovers files and puts paths into a bounded circular buffer. Consumer threads remove paths and count the search word in each file. Semaphores coordinate empty spaces, queued items, buffer access and shared totals. The producer supplies termination markers and the main thread joins the workers before finishing.
 
-I kept the course examples beside the assignments because they provide the original learning context. They should be read as supplied reference material, not as additional applications I independently authored.
+The course examples remain beside the assignments to preserve the original learning context. They are supplied reference material rather than additional student-authored applications.
 
 ## Building
 
